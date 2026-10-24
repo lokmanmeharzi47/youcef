@@ -504,6 +504,25 @@
       background: rgba(18, 52, 36, 0.95);
     }
 
+    .btn-whatsapp {
+      background: linear-gradient(135deg, rgba(14, 52, 32, 0.95) 0%, rgba(9, 36, 22, 0.98) 100%);
+      color: #38E57A;
+      border: 1px solid rgba(56, 229, 122, 0.45);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(20, 70, 44, 0.98) 0%, rgba(12, 48, 30, 1) 100%);
+      border-color: #38E57A;
+      color: #85F5AF;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.28);
+    }
+
+    .btn-whatsapp svg {
+      fill: #38E57A;
+    }
+
     /* Official Credential Data Card */
     .credential-card {
       background: var(--surface-card);
@@ -571,6 +590,54 @@
       color: var(--gold-bright) !important;
       letter-spacing: 0.05em;
     }
+
+    /* Force LTR display for phone numbers and codes in RTL layouts */
+    .phone-ltr,
+    .phone-link,
+    #val-cred-tel,
+    #val-cred-tel2,
+    #val-id-num,
+    #val-reg-num {
+      direction: ltr !important;
+      unicode-bidi: isolate !important;
+      font-variant-numeric: tabular-nums;
+    }
+
+    [dir="rtl"] #val-cred-tel,
+    [dir="rtl"] #val-cred-tel2,
+    [dir="rtl"] #val-id-num,
+    [dir="rtl"] #val-reg-num,
+    [dir="rtl"] .cred-item dd.phone-ltr {
+      text-align: right;
+    }
+
+    [dir="ltr"] #val-cred-tel,
+    [dir="ltr"] #val-cred-tel2,
+    [dir="ltr"] #val-id-num,
+    [dir="ltr"] #val-reg-num,
+    [dir="ltr"] .cred-item dd.phone-ltr {
+      text-align: left;
+    }
+
+    .phone-link {
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      direction: ltr !important;
+      unicode-bidi: isolate !important;
+    }
+
+    .phone-link:hover {
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+
+    bdi[dir="ltr"] {
+      direction: ltr !important;
+      unicode-bidi: isolate !important;
+      display: inline-block;
+    }
+
 
     .gold-highlight {
       color: var(--gold-bright) !important;
@@ -673,6 +740,30 @@
 
     .contact-pill:hover {
       background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+    }
+
+    .contact-pill-wa {
+      border-color: rgba(56, 229, 122, 0.4);
+    }
+
+    .contact-pill-wa svg {
+      fill: #38E57A;
+    }
+
+    .contact-pill-wa:hover {
+      background: rgba(37, 211, 102, 0.16);
+      border-color: #38E57A;
+      color: #85F5AF;
+    }
+
+    .contact-pill-alt {
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .contact-pill-alt:hover {
+      background: rgba(212, 175, 55, 0.25);
       border-color: var(--gold-bright);
       color: var(--gold-bright);
     }
@@ -910,13 +1001,22 @@
         <span id="btn-save-contact">حفظ بطاقة الاتصال الرسمية (vCard)</span>
       </button>
 
-      <a href="tel:+213000000000" class="btn-executive btn-emerald-outline" id="btn-top-call">
+      <a href="tel:+213555171783" class="btn-executive btn-emerald-outline" id="btn-top-call">
         <!-- Phone SVG -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
         </svg>
-        <span id="btn-top-call-txt">الاتصال المباشر بالمكتب الجهوي</span>
+        <span id="btn-top-call-txt">الاتصال المباشر: <bdi dir="ltr">0555 17 17 83</bdi></span>
+      </a>
+
+      <a href="https://wa.me/213555171783" target="_blank" rel="noopener noreferrer" class="btn-executive btn-whatsapp" id="btn-top-wa">
+        <!-- WhatsApp SVG -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.188 8.188 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z" />
+        </svg>
+        <span id="btn-top-wa-txt">مراسلة واتساب الرسمية (WhatsApp)</span>
       </a>
 
       <button type="button" class="btn-executive btn-emerald-outline" onclick="shareProfile()">
@@ -974,6 +1074,21 @@
         <div class="cred-item cred-item-full">
           <dt id="lbl-decree">اعتماد وزارة الداخلية والجماعات المحلية والتهيئة العمرانية</dt>
           <dd class="mono-gold">رقم: 017 / م ع ح ع ش ق / م ج ج / م ف ج / 21</dd>
+        </div>
+
+        <div class="cred-item">
+          <dt id="lbl-cred-tel">رقم الهاتف والواتساب</dt>
+          <dd class="mono-gold phone-ltr" id="val-cred-tel" dir="ltr"><a href="tel:+213555171783" dir="ltr" class="phone-link"><bdi dir="ltr">&lrm;+213 555 17 17 83</bdi></a></dd>
+        </div>
+
+        <div class="cred-item">
+          <dt id="lbl-cred-tel2">الرقم الاستثنائي</dt>
+          <dd class="mono-gold phone-ltr" id="val-cred-tel2" dir="ltr"><a href="tel:+213661144428" dir="ltr" class="phone-link"><bdi dir="ltr">&lrm;+213 661 14 44 28</bdi></a></dd>
+        </div>
+
+        <div class="cred-item cred-item-full">
+          <dt id="lbl-cred-mail">البريد الإلكتروني الرسمي</dt>
+          <dd class="mono-gold" id="val-cred-mail"><a href="mailto:khalifyoucef388@gmail.com" style="color: inherit; text-decoration: none; word-break: break-all;">khalifyoucef388@gmail.com</a></dd>
         </div>
 
         <div class="cred-item">
@@ -1039,20 +1154,36 @@
 
     <!-- Direct Contact Options -->
     <section class="contact-pills anim-reveal" aria-label="قنوات التواصل">
-      <a href="tel:+213000000000" class="contact-pill" id="btn-call">
+      <a href="tel:+213555171783" class="contact-pill" id="btn-call">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
         </svg>
-        <span id="txt-contact-phone">الاتصال المباشر بالمكتب الجهوي</span>
+        <span id="txt-contact-phone">الاتصال الهاتفي المباشر: <bdi dir="ltr">0555 17 17 83</bdi></span>
       </a>
 
-      <a href="mailto:contact@kamel-said.dz" class="contact-pill" id="btn-mail">
+      <a href="https://wa.me/213555171783" target="_blank" rel="noopener noreferrer" class="contact-pill contact-pill-wa" id="btn-wa">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.188 8.188 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z" />
+        </svg>
+        <span id="txt-contact-wa">المحادثة الفورية عبر واتساب (WhatsApp)</span>
+      </a>
+
+      <a href="tel:+213661144428" class="contact-pill contact-pill-alt" id="btn-call2">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+        </svg>
+        <span id="txt-contact-phone2">الاتصال بالرقم الاستثنائي: <bdi dir="ltr">0661 14 44 28</bdi></span>
+      </a>
+
+      <a href="mailto:khalifyoucef388@gmail.com" class="contact-pill" id="btn-mail">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
         </svg>
-        <span id="txt-contact-mail">المراسلة الرسمية عبر البريد الإلكتروني</span>
+        <span id="txt-contact-mail">البريد الإلكتروني: khalifyoucef388@gmail.com</span>
       </a>
 
       <div class="contact-pill" onclick="copyOfficeLocation()" role="button" tabindex="0">
@@ -1233,8 +1364,9 @@
         'FN:YOUCEF KHALIF (يوسف خليف)',
         'ORG:المنظمة الجزائرية إتصال من أجل التنمية - الهيئة الوطنية لتنمية المهاجرين والتكفل بالجالية بالخارج',
         'TITLE:مستشار سياسي واستراتيجي • عضو بالمكتب الجهوي (الوسط الجزائر العاصمة)',
-        'TEL;TYPE=CELL,VOICE:+213000000000',
-        'EMAIL;TYPE=WORK:contact@youcef-khalif.dz',
+        'TEL;TYPE=CELL,VOICE,PREF=1:+213555171783',
+        'TEL;TYPE=WORK,VOICE:+213661144428',
+        'EMAIL;TYPE=INTERNET,WORK,PREF=1:khalifyoucef388@gmail.com',
         'NOTE:الرقم التعريفي: 100113 | رقم التسجيل: 2026201601131018 | إعتماد وزارة الداخلية رقم 017 | بطاقة إطار رسمية معتمدة',
         'END:VCARD'
       ].join('\r\n');
@@ -1268,7 +1400,8 @@
         bannerTitle: 'حامل هذه البطاقة شخصية إعتبارية',
         bannerSub: 'له كامل الصلاحيات أمام الجهات الرسمية والأمنية',
         btnSaveContact: 'حفظ بطاقة الاتصال الرسمية (vCard)',
-        btnTopCall: 'الاتصال المباشر بالمكتب الجهوي',
+        btnTopCall: 'الاتصال المباشر: <bdi dir="ltr">0555 17 17 83</bdi>',
+        btnTopWa: 'مراسلة واتساب الرسمية (WhatsApp)',
         btnShareProfile: 'مشاركة الرابط الرسمي',
         credTitle: 'بيانات العضوية والاعتماد الرسمي',
         lblIdNum: 'الرقم التعريفي (Matricule)',
@@ -1283,6 +1416,12 @@
         valRole: 'مستشار سياسي واستراتيجي • عضو بالمكتب الجهوي (الوسط الجزائر العاصمة)',
         lblCardType: 'نوع وثيقة الاعتماد',
         valCardType: 'بطاقة إطار رسمية معتمدة • Carte de Cadre Officielle',
+        lblCredTel: 'رقم الهاتف والواتساب',
+        valCredTel: '+213 555 17 17 83',
+        lblCredTel2: 'الرقم الاستثنائي',
+        valCredTel2: '+213 661 14 44 28',
+        lblCredMail: 'البريد الإلكتروني الرسمي',
+        valCredMail: 'khalifyoucef388@gmail.com',
         lblDecree: 'اعتماد وزارة الداخلية والجماعات المحلية والتهيئة العمرانية',
         lblIssue: 'تاريخ الإصدار والصلاحية',
         valIssue: 'أكتوبر 2026 (صالحة لمدة سنة قابلة للتجديد)',
@@ -1295,8 +1434,10 @@
         p2Desc: 'مرافقة المستثمرين وحاملي المشاريع من أبناء الجالية، وفتح الآفاق التنموية لدعم الاقتصاد الجزائري الواعد.',
         p3Title: 'التكفل الشامل ورعاية المهاجرين',
         p3Desc: 'تقديم المرافقة الإدارية والقانونية والمجتمعية اللازمة وفق المواثيق والأطر الرسمية الدولية والوطنية.',
-        contactPhone: 'الاتصال المباشر بالمكتب الجهوي',
-        contactMail: 'المراسلة الرسمية عبر البريد الإلكتروني',
+        contactPhone: 'الاتصال الهاتفي المباشر: <bdi dir="ltr">0555 17 17 83</bdi>',
+        contactWa: 'المحادثة الفورية عبر واتساب (WhatsApp)',
+        contactPhone2: 'الاتصال بالرقم الاستثنائي: <bdi dir="ltr">0661 14 44 28</bdi>',
+        contactMail: 'البريد الإلكتروني: khalifyoucef388@gmail.com',
         contactLoc: 'المقر: الجزائر العاصمة • المكتب الجهوي للوسط',
         legalHeading: 'توجيهات وضوابط أمنية وإدارية رسمية',
         dir1: 'الصفة التمثيلية شخصية وصادرة وفق المعايير والاعتمادات الإدارية الرسمية.',
@@ -1320,7 +1461,8 @@
         bannerTitle: 'Le titulaire de cette carte est une personne morale',
         bannerSub: 'Ayant pleins pouvoirs devant les autorités officielles et sécuritaires',
         btnSaveContact: 'Enregistrer le Contact Officiel (vCard)',
-        btnTopCall: 'Appeler le Bureau Régional',
+        btnTopCall: 'Appel direct : <bdi dir="ltr">0555 17 17 83</bdi>',
+        btnTopWa: 'Message officiel WhatsApp',
         btnShareProfile: 'Partager le Profil Officiel',
         credTitle: 'Fiche d’Identification & Agrément Officiel',
         lblIdNum: 'N° d’Identification (Matricule)',
@@ -1335,6 +1477,12 @@
         valRole: 'Conseiller Politique et Stratégique • Bureau Régional Alger Centre',
         lblCardType: 'Type de document',
         valCardType: 'Carte de Cadre Officielle Accréditée',
+        lblCredTel: 'Téléphone & WhatsApp',
+        valCredTel: '+213 555 17 17 83',
+        lblCredTel2: 'Numéro exceptionnel',
+        valCredTel2: '+213 661 14 44 28',
+        lblCredMail: 'E-mail officiel',
+        valCredMail: 'khalifyoucef388@gmail.com',
         lblDecree: 'Agrément du Ministère de l’Intérieur et des Collectivités Locales',
         lblIssue: 'Date d’émission & Validité',
         valIssue: 'Octobre 2026 (Valable un an renouvelable)',
@@ -1347,9 +1495,11 @@
         p2Desc: 'Accompagner les porteurs de projets et ouvrir les horizons pour fortifier l’économie nationale.',
         p3Title: 'Prise en charge et protection des migrants',
         p3Desc: 'Assurer une assistance administrative, juridique et citoyenne conforme aux conventions internationales.',
-        contactPhone: 'Appeler le Bureau Régional',
-        contactMail: 'Correspondance Officielle par E-mail',
-        contactLoc: 'Siège: Alger • Bureau Régional du Centre',
+        contactPhone: 'Appel direct : <bdi dir="ltr">0555 17 17 83</bdi>',
+        contactWa: 'Discussion WhatsApp officielle',
+        contactPhone2: 'Numéro exceptionnel : <bdi dir="ltr">0661 14 44 28</bdi>',
+        contactMail: 'E-mail : khalifyoucef388@gmail.com',
+        contactLoc: 'Siège : Alger • Bureau Régional du Centre',
         legalHeading: 'Directives Légales & Administratives',
         dir1: 'La qualité représentative est strictement personnelle et conforme aux agréments officiels.',
         dir2: 'Présentation obligatoire aux services sécuritaires et administratifs en mission.',
@@ -1372,7 +1522,8 @@
         bannerTitle: 'The holder of this card is a legal persona',
         bannerSub: 'Vested with full executive powers before official and security authorities',
         btnSaveContact: 'Save Official Contact (vCard)',
-        btnTopCall: 'Call Regional Office',
+        btnTopCall: 'Direct Call: <bdi dir="ltr">0555 17 17 83</bdi>',
+        btnTopWa: 'Official WhatsApp Message',
         btnShareProfile: 'Share Official Profile',
         credTitle: 'Official Credential Data Sheet',
         lblIdNum: 'Identification Number (ID)',
@@ -1387,6 +1538,12 @@
         valRole: 'Political and Strategic Advisor • Central Algiers Regional Office',
         lblCardType: 'Document Type',
         valCardType: 'Officially Accredited Cadre Card',
+        lblCredTel: 'Phone & WhatsApp',
+        valCredTel: '+213 555 17 17 83',
+        lblCredTel2: 'Emergency / Secondary No.',
+        valCredTel2: '+213 661 14 44 28',
+        lblCredMail: 'Official Email',
+        valCredMail: 'khalifyoucef388@gmail.com',
         lblDecree: 'Ministry of Interior & Local Authorities Accreditation',
         lblIssue: 'Issue Date & Validity',
         valIssue: 'October 2026 (Valid for one renewable year)',
@@ -1399,8 +1556,10 @@
         p2Desc: 'Guiding diaspora investors and unlocking promising horizons for the Algerian national economy.',
         p3Title: 'Comprehensive Protection and Migrant Sponsorship',
         p3Desc: 'Delivering tailored legal, administrative, and civic assistance under national and international treaties.',
-        contactPhone: 'Direct Regional Office Call',
-        contactMail: 'Official Email Correspondence',
+        contactPhone: 'Direct Phone Call: <bdi dir="ltr">0555 17 17 83</bdi>',
+        contactWa: 'Instant WhatsApp Messaging',
+        contactPhone2: 'Emergency Line: <bdi dir="ltr">0661 14 44 28</bdi>',
+        contactMail: 'Email: khalifyoucef388@gmail.com',
         contactLoc: 'Headquarters: Algiers • Central Regional Office',
         legalHeading: 'Official Legal & Security Directives',
         dir1: 'Official standing is strictly personal and compliant with governmental accreditation.',
@@ -1416,72 +1575,91 @@
       document.documentElement.lang = lang;
       document.documentElement.dir = data.dir;
 
-      document.getElementById('preloader-text').textContent = data.preloader;
-      document.getElementById('txt-republic-ar').textContent = data.republicAr;
-      document.getElementById('txt-republic-en').textContent = data.republicEn;
-      document.getElementById('txt-org-title').textContent = data.orgTitle;
-      document.getElementById('txt-org-sub').textContent = data.orgSub;
-      document.getElementById('txt-pillars-pill').innerHTML = data.pillarsPill;
-      document.getElementById('txt-badge-status').textContent = data.badgeStatus;
-      document.getElementById('txt-person-name-ar').textContent = data.personNameAr;
-      document.getElementById('txt-person-name-en').textContent = data.personNameEn;
-      document.getElementById('txt-person-title').textContent = data.personTitle;
-      document.getElementById('txt-banner-title').textContent = data.bannerTitle;
-      document.getElementById('txt-banner-sub').textContent = data.bannerSub;
+      const setTxt = (id, txt) => {
+        const el = document.getElementById(id);
+        if (el && txt !== undefined) el.textContent = txt;
+      };
+      const setHtml = (id, html) => {
+        const el = document.getElementById(id);
+        if (el && html !== undefined) el.innerHTML = html;
+      };
 
-      document.getElementById('btn-save-contact').textContent = data.btnSaveContact;
-      document.getElementById('btn-top-call-txt').textContent = data.btnTopCall;
-      document.getElementById('btn-share-profile').textContent = data.btnShareProfile;
+      setTxt('preloader-text', data.preloader);
+      setTxt('txt-republic-ar', data.republicAr);
+      setTxt('txt-republic-en', data.republicEn);
+      setTxt('txt-org-title', data.orgTitle);
+      setTxt('txt-org-sub', data.orgSub);
+      setHtml('txt-pillars-pill', data.pillarsPill);
+      setTxt('txt-badge-status', data.badgeStatus);
+      setTxt('txt-person-name-ar', data.personNameAr);
+      setTxt('txt-person-name-en', data.personNameEn);
+      setTxt('txt-person-title', data.personTitle);
+      setTxt('txt-banner-title', data.bannerTitle);
+      setTxt('txt-banner-sub', data.bannerSub);
 
-      document.getElementById('txt-cred-title').textContent = data.credTitle;
-      document.getElementById('lbl-id-num').textContent = data.lblIdNum;
+      setTxt('btn-save-contact', data.btnSaveContact);
+      setHtml('btn-top-call-txt', data.btnTopCall);
+      setTxt('btn-top-wa-txt', data.btnTopWa);
+      setTxt('btn-share-profile', data.btnShareProfile);
+
+      setTxt('txt-cred-title', data.credTitle);
+      setTxt('lbl-id-num', data.lblIdNum);
       const valIdNumEl = document.getElementById('val-id-num');
       if (valIdNumEl && data.valIdNum) valIdNumEl.textContent = data.valIdNum;
 
-      document.getElementById('lbl-reg-num').textContent = data.lblRegNum;
+      setTxt('lbl-reg-num', data.lblRegNum);
       const valRegNumEl = document.getElementById('val-reg-num');
       if (valRegNumEl && data.valRegNum) valRegNumEl.textContent = data.valRegNum;
 
-      document.getElementById('lbl-full-name').textContent = data.lblFullName;
+      setTxt('lbl-full-name', data.lblFullName);
       const valFullNameEl = document.getElementById('val-full-name');
       if (valFullNameEl && data.valFullName) valFullNameEl.textContent = data.valFullName;
 
-      document.getElementById('lbl-birth').textContent = data.lblBirth;
+      setTxt('lbl-birth', data.lblBirth);
       const valBirthEl = document.getElementById('val-birth');
       if (valBirthEl && data.valBirth) valBirthEl.textContent = data.valBirth;
 
-      document.getElementById('lbl-role').textContent = data.lblRole;
-      document.getElementById('val-role').textContent = data.valRole;
+      setTxt('lbl-role', data.lblRole);
+      setTxt('val-role', data.valRole);
 
       const lblCardTypeEl = document.getElementById('lbl-card-type');
       if (lblCardTypeEl && data.lblCardType) lblCardTypeEl.textContent = data.lblCardType;
       const valCardTypeEl = document.getElementById('val-card-type');
       if (valCardTypeEl && data.valCardType) valCardTypeEl.textContent = data.valCardType;
 
-      document.getElementById('lbl-decree').textContent = data.lblDecree;
-      document.getElementById('lbl-issue').textContent = data.lblIssue;
-      document.getElementById('val-issue').textContent = data.valIssue;
-      document.getElementById('lbl-signatory').textContent = data.lblSignatory;
-      document.getElementById('val-signatory').textContent = data.valSignatory;
+      setTxt('lbl-cred-tel', data.lblCredTel);
+      setHtml('val-cred-tel', `<a href="tel:+213555171783" dir="ltr" class="phone-link"><bdi dir="ltr">&lrm;${data.valCredTel}</bdi></a>`);
+      setTxt('lbl-cred-tel2', data.lblCredTel2);
+      setHtml('val-cred-tel2', `<a href="tel:+213661144428" dir="ltr" class="phone-link"><bdi dir="ltr">&lrm;${data.valCredTel2}</bdi></a>`);
+      setTxt('lbl-cred-mail', data.lblCredMail);
+      setHtml('val-cred-mail', `<a href="mailto:khalifyoucef388@gmail.com" style="color: inherit; text-decoration: none; word-break: break-all;">${data.valCredMail}</a>`);
 
-      document.getElementById('txt-pillars-heading').textContent = data.pillarsHeading;
-      document.getElementById('txt-p1-title').textContent = data.p1Title;
-      document.getElementById('txt-p1-desc').textContent = data.p1Desc;
-      document.getElementById('txt-p2-title').textContent = data.p2Title;
-      document.getElementById('txt-p2-desc').textContent = data.p2Desc;
-      document.getElementById('txt-p3-title').textContent = data.p3Title;
-      document.getElementById('txt-p3-desc').textContent = data.p3Desc;
+      setTxt('lbl-decree', data.lblDecree);
+      setTxt('lbl-issue', data.lblIssue);
+      setTxt('val-issue', data.valIssue);
+      setTxt('lbl-signatory', data.lblSignatory);
+      setTxt('val-signatory', data.valSignatory);
 
-      document.getElementById('txt-contact-phone').textContent = data.contactPhone;
-      document.getElementById('txt-contact-mail').textContent = data.contactMail;
-      document.getElementById('txt-contact-loc').textContent = data.contactLoc;
+      setTxt('txt-pillars-heading', data.pillarsHeading);
+      setTxt('txt-p1-title', data.p1Title);
+      setTxt('txt-p1-desc', data.p1Desc);
+      setTxt('txt-p2-title', data.p2Title);
+      setTxt('txt-p2-desc', data.p2Desc);
+      setTxt('txt-p3-title', data.p3Title);
+      setTxt('txt-p3-desc', data.p3Desc);
 
-      document.getElementById('txt-legal-heading').textContent = data.legalHeading;
-      document.getElementById('txt-dir-1').textContent = data.dir1;
-      document.getElementById('txt-dir-2').textContent = data.dir2;
-      document.getElementById('txt-dir-3').textContent = data.dir3;
-      document.getElementById('txt-dir-4').textContent = data.dir4;
-      document.getElementById('txt-un-citation').innerHTML = data.unCitation;
+      setHtml('txt-contact-phone', data.contactPhone);
+      setTxt('txt-contact-wa', data.contactWa);
+      setHtml('txt-contact-phone2', data.contactPhone2);
+      setHtml('txt-contact-mail', data.contactMail);
+      setTxt('txt-contact-loc', data.contactLoc);
+
+      setTxt('txt-legal-heading', data.legalHeading);
+      setTxt('txt-dir-1', data.dir1);
+      setTxt('txt-dir-2', data.dir2);
+      setTxt('txt-dir-3', data.dir3);
+      setTxt('txt-dir-4', data.dir4);
+      setHtml('txt-un-citation', data.unCitation);
 
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
